@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nunnas B2 Homework – Herpes Zoster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1b2c4a;
+    --navy-deep: #0b1a2e;
+    --teal: #2dd4bf;
+    --teal-ink: #0f766e;
+    --lilac: #a78bfa;
+    --paper: #f5f8fa;
+    --card: #ffffff;
+    --ink: #1b2c4a;
+    --muted: #5b6b82;
+    --line: #dbe3ea;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 2.5rem 0 2rem;
+    border-bottom: 6px solid var(--teal);
+  }
+  .brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.25rem; }
+  .dots { display: inline-flex; gap: 3px; }
+  .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); display: block; }
+  .dots i + i { width: 7px; height: 7px; background: var(--lilac); }
+  h1 { font-size: clamp(1.75rem, 5vw, 2.4rem); line-height: 1.15; margin: 1.25rem 0 .5rem; }
+  .topic { color: #c9d6e6; margin: 0; }
+  .deadline {
+    margin-top: 1.5rem;
+    display: inline-block;
+    background: var(--teal);
+    color: var(--navy-deep);
+    font-weight: 700;
+    padding: .55rem 1rem;
+    border-radius: 999px;
+  }
+  .lang-toggle {
+    float: right;
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 999px;
+    padding: .3rem .9rem;
+    font: inherit;
+    font-size: .95rem;
+    cursor: pointer;
+  }
+  .lang-toggle:hover { border-color: var(--teal); }
+
+  main { padding: 2rem 0 3rem; }
+  .intro { color: var(--muted); margin: 0 0 2rem; }
+
+  section.task {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--teal);
+    border-radius: 10px;
+    padding: 1.5rem 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  section.task.speaking { border-left-color: var(--lilac); }
+  .skill { color: var(--teal-ink); font-weight: 700; font-size: .95rem; margin: 0; }
+  .speaking .skill { color: #6d4fd6; }
+  h2 { font-size: 1.4rem; line-height: 1.25; margin: .25rem 0 .75rem; }
+  h3 { font-size: 1.05rem; margin: 1.25rem 0 .4rem; }
+  ol, ul { padding-left: 1.4rem; margin: .5rem 0; }
+  li { margin: .3rem 0; }
+
+  .grammar {
+    background: #eefaf8;
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    margin: 1rem 0;
+  }
+  .grammar p { margin: 0 0 .6rem; }
+  .grammar dl { margin: 0; }
+  .grammar dt { font-weight: 700; margin-top: .6rem; }
+  .grammar dd { margin: 0; color: var(--muted); font-style: italic; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+  .btn {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: .75rem 1.25rem;
+    border-radius: 8px;
+  }
+  .btn:hover { background: var(--navy-deep); }
+  .btn.alt { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+  .btn.alt:hover { background: var(--navy); color: #fff; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+  .banner { width: 100%; max-width: 100%; height: auto; border-radius: 10px; display: block; margin: .5rem 0 1rem; }
+  .phrases li { font-style: italic; }
+  .note { font-size: .95rem; color: var(--muted); }
+
+  footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 0 2.5rem; }
+
+  /* Language switching */
+  body.es .en, body:not(.es) .es { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <button class="lang-toggle" id="langBtn" type="button" aria-label="Cambiar a español">Español</button>
+    <div class="brand"><span class="dots"><i></i><i></i></span> nunnas</div>
+    <h1><span class="en">B2 homework this week</span><span class="es">Tarea B2 de esta semana</span></h1>
+    <p class="topic"><span class="en">Topic: herpes zoster (shingles)</span><span class="es">Tema: herpes zóster (culebrilla)</span></p>
+    <div class="deadline"><span class="en">Due Sunday 4 October, 11:59 pm</span><span class="es">Fecha límite: domingo 4 de octubre, 11:59 pm</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro">
+    <span class="en">Complete all five tasks below before the deadline.</span>
+    <span class="es">Completa las cinco tareas de abajo antes de la fecha límite.</span>
+  </p>
+
+  <!-- GRAMMAR -->
+  <section class="task" id="grammar">
+    <p class="skill"><span class="en">Grammar practice</span><span class="es">Práctica de gramática</span></p>
+    <h2><span class="en">Past perfect and past perfect continuous</span><span class="es">Pasado perfecto y pasado perfecto continuo</span></h2>
+    <p>
+      <span class="en">This week you will practice the past perfect and past perfect continuous to establish an accurate clinical timeline for patients with herpes zoster (shingles).</span>
+      <span class="es">Esta semana practicarás el pasado perfecto y el pasado perfecto continuo para establecer una cronología clínica precisa de pacientes con herpes zóster (culebrilla).</span>
+    </p>
+    <div class="grammar">
+      <p>
+        <span class="en">The past perfect shows which of two past events happened first, which is essential in documentation, incident reports, and handovers, where a single change in tense can alter a medication or symptom timeline.</span>
+        <span class="es">El pasado perfecto muestra cuál de dos eventos pasados ocurrió primero, algo esencial en la documentación, los informes de incidentes y las entregas de turno, donde un solo cambio de tiempo verbal puede alterar la cronología de un medicamento o un síntoma.</span>
+      </p>
+      <dl>
+        <dt>Past perfect (had + past participle) for an action completed before another past event</dt>
+        <dd>By the time the patient arrived, the rash had spread to his back.</dd>
+        <dt>Contrast with the past simple for events in sequence</dt>
+        <dd>When I arrived, the patient took his antiviral (after I arrived). When I arrived, the patient had taken his antiviral (before I arrived).</dd>
+        <dt>Past perfect continuous (had been + -ing) for duration up to a past point or for a visible past result</dt>
+        <dd>She had been experiencing burning pain for four days before she was admitted.</dd>
+        <dt>Negatives and questions: hadn't + past participle; Had + subject + past participle?</dt>
+        <dd>The patient hadn't received the varicella vaccine. Had he started antivirals before the surgery was postponed?</dd>
+      </dl>
+    </div>
+    <ol class="en">
+      <li>Review the grammar summary above before you start.</li>
+      <li>Open the form.</li>
+      <li>Answer the questions.</li>
+    </ol>
+    <ol class="es">
+      <li>Revisa el resumen gramatical de arriba antes de empezar.</li>
+      <li>Abre el formulario.</li>
+      <li>Responde las preguntas.</li>
+    </ol>
+    <div class="actions">
+      <a class="btn" href="https://docs.google.com/forms/d/1-tpit7dfpxqx7kKaRC9HhHY6U0YGxe7qlUieYKsdVo0/viewform" target="_blank" rel="noopener"><span class="en">Open the grammar form</span><span class="es">Abrir el formulario de gramática</span></a>
+    </div>
+  </section>
+
+  <!-- READING -->
+  <section class="task" id="reading">
+    <p class="skill"><span class="en">Reading comprehension</span><span class="es">Comprensión de lectura</span></p>
+    <h2><span class="en">A delayed diagnosis: clinical incident review</span><span class="es">Un diagnóstico tardío: revisión de incidente clínico</span></h2>
+    <p>
+      <span class="en">This week you will read about a delayed diagnosis of disseminated herpes zoster in a post-surgical patient and the infection control lessons that followed.</span>
+      <span class="es">Esta semana leerás sobre un diagnóstico tardío de herpes zóster diseminado en un paciente postquirúrgico y las lecciones de control de infecciones que se aprendieron después.</span>
+    </p>
+    <ol class="en">
+      <li>Open the Google Forms quiz.</li>
+      <li>Read the clinical incident review carefully.</li>
+      <li>Read each question carefully before answering.</li>
+      <li>Answer the questions using the text to support your answers.</li>
+    </ol>
+    <ol class="es">
+      <li>Abre el cuestionario de Google Forms.</li>
+      <li>Lee la revisión del incidente clínico con atención.</li>
+      <li>Lee cada pregunta con atención antes de responder.</li>
+      <li>Responde las preguntas usando el texto para apoyar tus respuestas.</li>
+    </ol>
+    <div class="actions">
+      <a class="btn" href="https://docs.google.com/forms/d/1JN4urHA1FnUv5f02JoGNyRbuacMkbAiP9AVwc-vjpsg/viewform" target="_blank" rel="noopener"><span class="en">Open the reading quiz</span><span class="es">Abrir el cuestionario de lectura</span></a>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="task" id="writing">
+    <p class="skill"><span class="en">Writing</span><span class="es">Escritura</span></p>
+    <h2><span class="en">A formal incident statement</span><span class="es">Una declaración formal de incidente</span></h2>
+    <p>
+      <span class="en">This week you will write a formal incident statement that establishes the chronology of a delayed shingles diagnosis in a post-operative patient.</span>
+      <span class="es">Esta semana escribirás una declaración formal de incidente que establece la cronología de un diagnóstico tardío de culebrilla en un paciente postoperatorio.</span>
+    </p>
+    <ol class="en">
+      <li>Download the Word template.</li>
+      <li>Read the case notes on page 1.</li>
+      <li>Write your note on page 2.</li>
+      <li>Email your completed template to <a href="mailto:luke@nunnas.care">luke@nunnas.care</a>. Put your name in the subject line.</li>
+    </ol>
+    <ol class="es">
+      <li>Descarga la plantilla de Word.</li>
+      <li>Lee las notas del caso en la página 1.</li>
+      <li>Escribe tu nota en la página 2.</li>
+      <li>Envía tu plantilla completa por correo a <a href="mailto:luke@nunnas.care">luke@nunnas.care</a>. Escribe tu nombre en el asunto.</li>
+    </ol>
+    <div class="actions">
+      <a class="btn" href="Nunnas_B2_Writing_Herpes_Zoster.docx" download><span class="en">Download the template</span><span class="es">Descargar la plantilla</span></a>
+      <a class="btn alt" href="mailto:luke@nunnas.care?subject=B2%20Writing%20-%20Herpes%20Zoster%20-%20[Your%20name]"><span class="en">Email your work</span><span class="es">Enviar tu trabajo</span></a>
+    </div>
+    <p class="note">
+      <span class="en">Remember to attach your completed file to the email before you send it.</span>
+      <span class="es">Recuerda adjuntar tu archivo completo al correo antes de enviarlo.</span>
+    </p>
+  </section>
+
+  <!-- LISTENING -->
+  <section class="task" id="listening">
+    <p class="skill"><span class="en">Listening comprehension</span><span class="es">Comprensión auditiva</span></p>
+    <h2><span class="en">A dermatologist on herpes zoster, in depth</span><span class="es">Un dermatólogo habla a fondo del herpes zóster</span></h2>
+    <p>
+      <span class="en">This week you will listen to a dermatologist discuss the pathophysiology, risk factors, transmission, complications, and prevention of herpes zoster (shingles) in depth.</span>
+      <span class="es">Esta semana escucharás a un dermatólogo hablar a fondo sobre la fisiopatología, los factores de riesgo, la transmisión, las complicaciones y la prevención del herpes zóster (culebrilla).</span>
+    </p>
+    <ol class="en">
+      <li>Open the audio. You can pause and replay as many times as you need.</li>
+      <li>Open the Google Forms quiz and answer the questions.</li>
+      <li>Use what you heard to support your answers.</li>
+    </ol>
+    <ol class="es">
+      <li>Abre el audio. Puedes pausar y volver a reproducirlo las veces que necesites.</li>
+      <li>Abre el cuestionario de Google Forms y responde las preguntas.</li>
+      <li>Usa lo que escuchaste para apoyar tus respuestas.</li>
+    </ol>
+    <div class="actions">
+      <a class="btn alt" href="https://youtu.be/uRTtCqz2auA" target="_blank" rel="noopener"><span class="en">Open the audio</span><span class="es">Abrir el audio</span></a>
+      <a class="btn" href="https://docs.google.com/forms/d/1CkUndKskCpvOf9t4z92GWovYkfwlDpdZwckctRhuyxI/viewform" target="_blank" rel="noopener"><span class="en">Open the listening quiz</span><span class="es">Abrir el cuestionario auditivo</span></a>
+    </div>
+  </section>
+
+  <!-- SPEAKING -->
+  <section class="task speaking" id="speaking">
+    <p class="skill"><span class="en">Weekly speaking challenge</span><span class="es">Reto semanal de expresión oral</span></p>
+    <h2><span class="en">How I practise English in real life</span><span class="es">Cómo practico inglés en la vida real</span></h2>
+    <img class="banner" src="speaking-challenge.png" alt="Nunnas weekly speaking challenge: how I practise English in real life. Group B.">
+    <p>
+      <span class="en">This week's speaking activity is all about the ways you practise English outside of our regular class homework. Everyone learns differently, so this is a great chance to share what works for you and pick up new ideas from your classmates.</span>
+      <span class="es">La actividad oral de esta semana trata sobre las formas en que practicas inglés fuera de la tarea habitual de clase. Cada persona aprende de forma diferente, así que es una gran oportunidad para compartir lo que te funciona y descubrir nuevas ideas de tus compañeros.</span>
+    </p>
+
+    <h3><span class="en">Your task</span><span class="es">Tu tarea</span></h3>
+    <p>
+      <span class="en">Record a video (minimum 90 seconds) answering these questions:</span>
+      <span class="es">Graba un video (mínimo 90 segundos) respondiendo estas preguntas:</span>
+    </p>
+    <ol class="en">
+      <li>What do you do to practise English in your everyday life? (For example: watching series or films, listening to music or podcasts, using apps, reading, talking with friends or family, labelling things at home, talking to yourself)</li>
+      <li>How often do you do it, and when?</li>
+      <li>Which way helps you the most, and why?</li>
+      <li>Is there something new you would like to try?</li>
+    </ol>
+    <ol class="es">
+      <li>¿Qué haces para practicar inglés en tu vida diaria? (Por ejemplo: ver series o películas, escuchar música o podcasts, usar aplicaciones, leer, hablar con amigos o familia, poner etiquetas a cosas en casa, hablar contigo mismo)</li>
+      <li>¿Con qué frecuencia lo haces y cuándo?</li>
+      <li>¿Qué forma te ayuda más y por qué?</li>
+      <li>¿Hay algo nuevo que te gustaría probar?</li>
+    </ol>
+
+    <h3><span class="en">Useful phrases</span><span class="es">Frases útiles</span></h3>
+    <ul class="phrases">
+      <li>One way I practise English is…</li>
+      <li>I usually… when I…</li>
+      <li>This helps me because…</li>
+      <li>I'd like to try… because…</li>
+    </ul>
+
+    <h3><span class="en">Peer response</span><span class="es">Respuesta a un compañero</span></h3>
+    <p>
+      <span class="en">Watch at least one classmate's video and reply with one idea you would like to try, or ask them a question about how they practise.</span>
+      <span class="es">Mira al menos un video de un compañero y responde con una idea que te gustaría probar, o hazle una pregunta sobre cómo practica.</span>
+    </p>
+
+    <h3><span class="en">Homework credit</span><span class="es">Crédito de tarea</span></h3>
+    <p>
+      <span class="en">To receive full credit towards your Nunnas score, you must:</span>
+      <span class="es">Para recibir el crédito completo en tu puntuación Nunnas, debes:</span>
+    </p>
+    <ul class="en">
+      <li>Post your own video in the community WhatsApp group.</li>
+      <li>Respond to at least one classmate's video this week.</li>
+    </ul>
+    <ul class="es">
+      <li>Publicar tu propio video en el grupo de WhatsApp de la comunidad.</li>
+      <li>Responder al menos a un video de un compañero esta semana.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <span class="en">Questions? Email <a href="mailto:luke@nunnas.care">luke@nunnas.care</a></span>
+  <span class="es">¿Preguntas? Escribe a <a href="mailto:luke@nunnas.care">luke@nunnas.care</a></span>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('langBtn');
+    function apply(lang) {
+      var es = lang === 'es';
+      document.body.classList.toggle('es', es);
+      document.documentElement.lang = es ? 'es' : 'en';
+      btn.textContent = es ? 'English' : 'Español';
+      btn.setAttribute('aria-label', es ? 'Switch to English' : 'Cambiar a español');
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('nunnas-lang'); } catch (e) {}
+    if (saved) apply(saved);
+    btn.addEventListener('click', function () {
+      var next = document.body.classList.contains('es') ? 'en' : 'es';
+      apply(next);
+      try { localStorage.setItem('nunnas-lang', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
